@@ -17,4 +17,4 @@ Additional installations such as pandas, keras, OpenCV, and TensorFlow may need 
 1. Create a folder with all the faces of the staff named **faces**. 
 2. For each person, create a folder with their name and each person's picture in their respective folder. Name the person's picture with the following scheme: `[FirstName_LastName_0.jpg]` (picture type can be JPG or PNG). For example, if a staff member was named **John Doe**, then 
 > folder: John_Doe
-    > image: John_Doe_0.png
+> image: John_Doe_0.png
