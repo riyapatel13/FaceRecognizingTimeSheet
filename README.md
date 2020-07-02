@@ -5,3 +5,9 @@ This is a software that uses facial recognition to update a timesheet for employ
 ## Installation
 
 This software requires use of [deepface](https://pypi.org/project/deepface/) framework.
+
+```bash
+pip install deepface
+```
+
+Additional installations such as pandas, keras, OpenCV, and TensorFlow may need to be installed/updated as well. 
