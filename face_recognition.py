@@ -8,10 +8,11 @@ import glob
 TODO:
 - requirements.txt
 - (another file/later) setup file
-- (another file/later) take picture and save it
-- (another file/later) real-time analysis + take pic + save 
+- (another file/later) real-time analysis 
+- update realtime.py (create new file) that only does facial recognition (to make it faster) - change DeepFace.stream and realtime.py
 - works with os, have it work with cloud 
 - error check for if the image cannot be found (generally shouldn't happen)
+- actually record time (JSON?)
 '''
 '''
 QUESTIONS:
@@ -81,7 +82,7 @@ def wrong_answer(pic, db_path):
 Creates pkl file with representation of database and deletes at end
 Optionally can choose model and metrics (but may need to load model)
 '''
-df = DeepFace.find(img_path = img, db_path = database_path)
+df = DeepFace.find(img_path = img, db_path = database_path, model_name ='VGG-Face', distance_metric = 'cosine')
 
 if df.shape[0] > 0:
     most_sim_pic = df.iloc[0].identity
