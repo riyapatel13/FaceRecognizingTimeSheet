@@ -1,0 +1,2 @@
+This is the timesheet for the project.
+Format: {"person": <person>, "time in": <time in>, "time out": <time out>, "hours worked": <time out - time in>}

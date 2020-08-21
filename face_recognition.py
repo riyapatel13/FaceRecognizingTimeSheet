@@ -3,17 +3,19 @@ import pandas as pd
 import os
 import shutil
 import glob
+import datetime
 
 '''
 TODO:
 - requirements.txt
 - (another file/later) setup file
-- (another file/later) real-time analysis 
 - update realtime.py (create new file) that only does facial recognition (to make it faster) - change DeepFace.stream and realtime.py
+- add/remove face
 - works with os, have it work with cloud 
 - error check for if the image cannot be found (generally shouldn't happen)
 - actually record time (JSON?)
 '''
+
 '''
 QUESTIONS:
 - what to do when database gets too large? delete earlier pictures? set a threshold
@@ -50,7 +52,7 @@ def update_database(pic, db_path, person):
     file_count = len(dir_list)
     shutil.copy(pic,db_path+'/'+person)
     os.rename(db_path+'/'+person+'/'+pic,db_path+'/'+person+'/'+person+'_'+str(file_count)+'.jpg')
-    print(f"{person} has been signed in")  
+    print(f"{person} has been signed in at {datetime.datetime.now()}.")  
 
 # given all the directories in the database, it will extract all the names of the people
 def list_names(db_path):
