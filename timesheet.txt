@@ -1,2 +1,7 @@
 This is the timesheet for the project.
 Format: {"person": <person>, "time in": <time in>, "time out": <time out>, "hours worked": <time out - time in>}
+{"person": "Riya Patel", "time in": "2020-08-21 14:56:34.288088", "time out": "2020-08-21 14:58:34.288088", "hours worked": "0:02:00.000000"}
+{"person": "Riya Patel", "time in": "2020-08-21 15:51:34.288088", "time out": "2020-08-21 14:54:34.288088", "hours worked": "1:03:00.000000"}
+{"person": "Ruchi", "time in": "2020-08-21 12:51:34.288088"}
+{"person": "Riya Patel", "time in": "2020-08-21 12:51:34.288088", "time out": "2020-08-21 15:51:40.962459", "time diff": "3:00:06.674371"}
+{"person": "Ruchi", "time in": "2020-08-21 12:51:34.288088", "time out": "2020-08-21 15:54:07.565310", "time diff": "3:02:33.277222"}

@@ -55,6 +55,7 @@ def write_to_file(file_name, person, time):
         # if out exists, then sign in
         # if there is an in without an out, then sign out and calculate difference
     # else sign in 
+    pass
 
 # if the program guessed incorrectly
 def wrong_answer(db_path):
