@@ -1,10 +1,13 @@
 from deepface import DeepFace
 import pandas as pd
 import os
+import shutil
 import glob
 
 '''
 TODO:
+- requirements.txt
+- (another file/later) setup file
 - (another file/later) take picture and save it
 - (another file/later) real-time analysis + take pic + save 
 - works with os, have it work with cloud 
@@ -14,7 +17,7 @@ TODO:
 QUESTIONS:
 - what to do when database gets too large? delete earlier pictures? set a threshold
 - deleted pkl file after every verification bc we are updating database, but it runs 3x slower
-    - 11s for 5 pictures --> doesn't scale well
+    - 11s for 5 pictures --> doesn't scale well, has to run on a faster device
 '''
 
 
@@ -34,19 +37,21 @@ metrics = ["cosine", "euclidean", "euclidean_l2"]
 database_path = "faces" # add this to setup file
 img = "test.jpg" # somehow make this so that its not in the file
 
-
+# if using the correct naming scheme, this will take the name from the pic
 def name_from_pic(path):
     dir_name = path.split("/")[1]
     name = dir_name.replace("_", " ")
     return name
 
+# this will update the picture in the database, but will keep the original image
 def update_database(pic, db_path, person):
     dir_list = os.listdir(db_path+'/'+person)
     file_count = len(dir_list)
-    os.rename(pic,db_path+'/'+person+'/'+person+'_'+str(file_count)+'.jpg')
-    # copy instead of just move because you lose the file (potentially an issue)
+    shutil.copy(pic,db_path+'/'+person)
+    os.rename(db_path+'/'+person+'/'+pic,db_path+'/'+person+'/'+person+'_'+str(file_count)+'.jpg')
     print(f"{person} has been signed in")  
 
+# given all the directories in the database, it will extract all the names of the people
 def list_names(db_path):
     people_dir = os.listdir(db_path)
     # create list of people
@@ -54,6 +59,7 @@ def list_names(db_path):
     while i < len(people_dir):
         # do not include .pkl file or .DS_Store file
         # eliminate all non name files
+        # any folder with a "." will not count
         if "." in people_dir[i]:
             people_dir.remove(people_dir[i])
         # extracting name
@@ -63,6 +69,7 @@ def list_names(db_path):
 
     return people_dir
 
+# if the program guessed incorrectly, then it will update the database
 def wrong_answer(pic, db_path):
     name_list = list_names(db_path)
     person = None
@@ -78,7 +85,7 @@ df = DeepFace.find(img_path = img, db_path = database_path)
 
 if df.shape[0] > 0:
     most_sim_pic = df.iloc[0].identity
-    person = name_from_pic(most_sim_pic) # extrace name from file path
+    person = name_from_pic(most_sim_pic) # extract name from file path
     
     verify = None
     while verify != 'Y' and verify != 'N':
