@@ -12,6 +12,8 @@ pip install deepface
 
 Additional installations such as pandas, keras, OpenCV, and TensorFlow may need to be installed/updated as well. 
 
+*Note*: deepface framework is not compatible with the latest version of OpenCV, so the OpenCV version may need to be downgraded.
+
 ## Setup Database
 
 1. Create a folder with all the faces of the staff named **faces**. 
